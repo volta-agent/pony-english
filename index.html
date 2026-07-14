@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✨ Pony English ✨</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#ff6bcb">
+<link rel="manifest" href="manifest.json">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- Fonts: using China-friendly alternatives -->
+<link rel="preconnect" href="https://fonts.font.im">
+<link href="https://fonts.font.im/css2?family=Bubblegum+Sans&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink: #ff6bcb;
+  --purple: #c77dff;
+  --blue: #72efdd;
+  --mint: #80ffdb;
+  --yellow: #ffe066;
+  --orange: #ffb347;
+  --coral: #ff8fab;
+  --lilac: #e0aaff;
+  --sky: #a0c4ff;
+  --cream: #fff5f9;
+  --dark: #3d2c5e;
+  --card-bg: rgba(255,255,255,0.92);
+  --shadow: 0 8px 32px rgba(100,60,150,0.18);
+  --shadow-lg: 0 16px 48px rgba(100,60,150,0.25);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Nunito', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: linear-gradient(135deg, #fce4f2 0%, #e8d5f5 25%, #d5e8f9 50%, #d5f5e8 75%, #fdf2d5 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+.sparkle-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.sparkle {
+  position: absolute;
+  width: 6px; height: 6px;
+  background: radial-gradient(circle, rgba(255,255,255,0.9), transparent);
+  border-radius: 50%;
+  animation: sparkle-float linear infinite;
+}
+
+@keyframes sparkle-float {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+.rainbow-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--pink), var(--orange), var(--yellow), var(--mint), var(--blue), var(--purple), var(--pink));
+  background-size: 200% 100%;
+  animation: rainbow-slide 4s linear infinite;
+  z-index: 100;
+}
+
+@keyframes rainbow-slide {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 16px 100px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 28px;
+  animation: fadeInDown 0.8s ease;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.header h1 {
+  font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
+  font-size: 2.6rem;
+  background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 4px rgba(200,100,200,0.2));
+  margin-bottom: 4px;
+}
+
+.header .subtitle {
+  font-size: 0.95rem;
+  color: #8a6fa0;
+  font-weight: 600;
+}
+
+.stats-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-card {
+  flex: 1;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 14px 10px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border: 2px solid rgba(255,255,255,0.6);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.stat-emoji { font-size: 1.5rem; }
+.stat-value {
+  font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
+  font-size: 1.6rem;
+  color: var(--purple);
+  line-height: 1.1;
+}
+.stat-label {
+  font-size: 0.72rem;
+  color: #9a7cb5;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 24px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 6px;
+  box-shadow: var(--shadow);
+  border: 2px solid rgba(255,255,255,0.6);
+  animation: fadeInUp 0.8s ease 0.3s both;
+}
+
+.nav-tab {
+  flex: 1;
+  padding: 12px 6px;
+  border: none;
+  background: transparent;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #9a7cb5;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.nav-tab:hover { background: rgba(199,125,255,0.08); }
+
+.nav-tab.active {
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  color: white;
+  box-shadow: 0 4px 16px rgba(200,100,220,0.35);
+}
+
+.nav-tab .tab-icon { font-size: 1.2rem; }
+
+.panel { display: none; animation: fadeIn 0.4s ease; }
+.panel.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Flashcard */
+.flashcard-container {
+  perspective: 1000px;
+  margin-bottom: 20px;
+}
+
+.flashcard {
+  width: 100%;
+  min-height: 340px;
+  position: relative;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flashcard.flipped { transform: rotateY(180deg); }
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  box-shadow: var(--shadow-lg);
+  border: 3px solid rgba(255,255,255,0.7);
+}
+
+.flashcard-front {
+  background: linear-gradient(145deg, #fff0f8, #f8f0ff, #f0f5ff);
+}
+
+.flashcard-back {
+  background: linear-gradient(145deg, #f0fff8, #f5f0ff, #fff0fa);
+  transform: rotateY(180deg);
+}
+
+.flashcard-word {
+  font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
+  font-size: 2.4rem;
+  color: var(--dark);
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.flashcard-hint {
+  font-size: 0.8rem;
+  color: #bda0d0;
+  margin-top: 16px;
+}
+
+.flashcard-unit {
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: white;
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.flashcard-counter {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #bda0d0;
+}
+
+/* Audio buttons */
+.audio-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.audio-btn:active { transform: scale(0.9); }
+
+.audio-btn-en {
+  background: linear-gradient(135deg, var(--blue), #5de6c8);
+  color: white;
+}
+
+.audio-btn-zh {
+  background: linear-gradient(135deg, var(--pink), var(--coral));
+  color: white;
+}
+
+.audio-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.audio-btn.playing {
+  animation: audioPulse 0.8s ease infinite;
+}
+
+@keyframes audioPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  50% { transform: scale(1.15); box-shadow: 0 6px 24px rgba(200,100,220,0.4); }
+}
+
+.audio-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.audio-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #9a7cb5;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Sentence display */
+.sentence-block {
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 16px;
+  width: 100%;
+  text-align: center;
+  border: 2px solid rgba(199,125,255,0.1);
+}
+
+.sentence-en {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.sentence-zh {
+  font-size: 0.9rem;
+  color: #8a6fa0;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.sentence-audio-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.sentence-audio-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 2px solid rgba(199,125,255,0.2);
+  background: rgba(255,255,255,0.8);
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+}
+
+.sentence-audio-btn:hover {
+  border-color: var(--purple);
+  background: rgba(255,255,255,1);
+  transform: translateY(-1px);
+}
+
+.sentence-audio-btn.playing {
+  border-color: var(--purple);
+  background: linear-gradient(135deg, rgba(199,125,255,0.1), rgba(255,107,203,0.1));
+  animation: audioPulse 0.8s ease infinite;
+}
+
+/* Card actions */
+.card-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.card-btn {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 16px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-btn:active { transform: scale(0.95); }
+
+.btn-hard {
+  background: linear-gradient(135deg, #ff8fab, #ff6b9d);
+  color: white;
+  box-shadow: 0 4px 16px rgba(255,100,150,0.3);
+}
+.btn-hard:hover { box-shadow: 0 6px 24px rgba(255,100,150,0.4); }
+
+.btn-easy {
+  background: linear-gradient(135deg, var(--mint), #5de6c8);
+  color: white;
+  box-shadow: 0 4px 16px rgba(100,220,180,0.3);
+}
+.btn-easy:hover { box-shadow: 0 6px 24px rgba(100,220,180,0.4); }
+
+/* Quiz */
+.quiz-question {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  border: 3px solid rgba(255,255,255,0.7);
+  margin-bottom: 20px;
+  animation: bounceIn 0.5s ease;
+}
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  60% { transform: scale(1.03); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.quiz-prompt {
+  font-size: 0.85rem;
+  color: #9a7cb5;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.quiz-word {
+  font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
+  font-size: 2.5rem;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.quiz-audio-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.quiz-unit-tag {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: white;
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  padding: 3px 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.quiz-option {
+  padding: 16px 12px;
+  border: 3px solid rgba(199,125,255,0.2);
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--dark);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(100,60,150,0.08);
+}
+
+.quiz-option:hover {
+  border-color: var(--purple);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.quiz-option.correct {
+  border-color: #5de6c8;
+  background: linear-gradient(135deg, #e8fff5, #d5f5e8);
+  animation: correctPulse 0.5s ease;
+}
+
+.quiz-option.wrong {
+  border-color: #ff6b9d;
+  background: linear-gradient(135deg, #fff0f5, #ffe0ea);
+  animation: wrongShake 0.4s ease;
+}
+
+@keyframes correctPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes wrongShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+/* Match game */
+.match-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.match-card {
+  padding: 18px 12px;
+  border-radius: 18px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid transparent;
+  box-shadow: 0 4px 12px rgba(100,60,150,0.08);
+  position: relative;
+}
+
+.match-card.en {
+  background: linear-gradient(145deg, #f8f0ff, #efe5ff);
+  color: var(--dark);
+  border-color: rgba(199,125,255,0.2);
+}
+
+.match-card.zh {
+  background: linear-gradient(145deg, #fff0f8, #ffe5f0);
+  color: var(--dark);
+  border-color: rgba(255,107,203,0.2);
+}
+
+.match-card.selected {
+  border-color: var(--purple);
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(199,125,255,0.3);
+}
+
+.match-card.matched {
+  opacity: 0.4;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+.match-card.wrong-match {
+  animation: wrongShake 0.4s ease;
+  border-color: #ff6b9d;
+}
+
+.match-card .match-audio {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.8);
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.match-card .match-audio:hover {
+  background: white;
+  transform: scale(1.1);
+}
+
+/* Word list */
+.unit-section {
+  margin-bottom: 20px;
+  animation: fadeInUp 0.5s ease both;
+}
+
+.unit-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  border: 2px solid rgba(255,255,255,0.6);
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.unit-header:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.unit-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.unit-info { flex: 1; }
+.unit-title {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--dark);
+}
+.unit-count {
+  font-size: 0.75rem;
+  color: #9a7cb5;
+  font-weight: 600;
+}
+
+.unit-arrow {
+  font-size: 1rem;
+  color: #bda0d0;
+  transition: transform 0.3s ease;
+}
+
+.unit-header.open .unit-arrow { transform: rotate(180deg); }
+
+.unit-words {
+  display: none;
+  padding: 4px 0;
+}
+
+.unit-words.open { display: block; }
+
+.word-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--card-bg);
+  border-radius: 12px;
+  margin-bottom: 4px;
+  border-left: 4px solid transparent;
+  transition: all 0.2s ease;
+  gap: 10px;
+}
+
+.word-row:hover {
+  background: rgba(255,255,255,0.98);
+  transform: translateX(4px);
+}
+
+.word-text { flex: 1; min-width: 0; }
+
+.word-en {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--dark);
+}
+
+.word-zh {
+  font-size: 0.85rem;
+  color: #8a6fa0;
+  font-weight: 600;
+}
+
+.word-sent {
+  font-size: 0.75rem;
+  color: #9a7cb5;
+  font-style: italic;
+  margin-top: 2px;
+}
+
+.word-audio-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  background: rgba(199,125,255,0.1);
+}
+
+.word-audio-btn:hover {
+  background: rgba(199,125,255,0.2);
+  transform: scale(1.1);
+}
+
+.word-audio-btn.playing {
+  animation: audioPulse 0.8s ease infinite;
+}
+
+.mastery-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.mastery-0 { background: #e0d5ea; }
+.mastery-1 { background: var(--yellow); }
+.mastery-2 { background: var(--orange); }
+.mastery-3 { background: var(--mint); }
+
+/* Celebration overlay */
+.celebration {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  background: rgba(61,44,94,0.4);
+  backdrop-filter: blur(4px);
+}
+
+.celebration.show { display: flex; }
+
+.celebration-card {
+  background: white;
+  border-radius: 28px;
+  padding: 40px 32px;
+  text-align: center;
+  max-width: 360px;
+  width: 90%;
+  box-shadow: var(--shadow-lg);
+  animation: bounceIn 0.5s ease;
+}
+
+.celebration-emoji { font-size: 4rem; margin-bottom: 12px; }
+
+.celebration-title {
+  font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
+  font-size: 1.8rem;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.celebration-msg {
+  color: #8a6fa0;
+  font-weight: 600;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.celebration-btn {
+  padding: 14px 32px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(200,100,220,0.3);
+  transition: all 0.3s ease;
+}
+
+.celebration-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(200,100,220,0.4);
+}
+
+/* Progress bar */
+.progress-wrap {
+  margin-bottom: 24px;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #8a6fa0;
+  margin-bottom: 6px;
+}
+
+.progress-bar {
+  height: 10px;
+  background: rgba(199,125,255,0.12);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue));
+  background-size: 200% 100%;
+  animation: rainbow-slide 3s linear infinite;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.filter-pill {
+  padding: 8px 16px;
+  border: 2px solid rgba(199,125,255,0.2);
+  background: var(--card-bg);
+  border-radius: 30px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: #8a6fa0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-pill:hover { border-color: var(--purple); }
+
+.filter-pill.active {
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  color: white;
+  border-color: transparent;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: #9a7cb5;
+}
+
+.empty-state .empty-emoji { font-size: 3rem; margin-bottom: 12px; }
+.empty-state p { font-weight: 600; font-size: 0.95rem; }
+
+/* Auto-play toggle */
+.auto-play-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #8a6fa0;
+}
+
+.auto-play-toggle input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--purple);
+  cursor: pointer;
+}
+
+.auto-play-toggle label {
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .header h1 { font-size: 2rem; }
+  .flashcard-word { font-size: 1.8rem; }
+  .quiz-word { font-size: 2rem; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat-card { min-width: calc(50% - 6px); }
+  .quiz-options { grid-template-columns: 1fr; }
+  .sentence-block { padding: 10px 14px; }
+}
+
+/* Tablet optimizations (Huawei MatePad, iPad, etc.) */
+@media (min-width: 768px) and (max-width: 1366px) {
+  .container { max-width: 720px; padding: 32px 24px; }
+  .flashcard { min-height: 380px; }
+  .flashcard-word { font-size: 3rem; }
+  .quiz-word { font-size: 3rem; }
+  .card-btn { padding: 18px 36px; font-size: 1rem; }
+  .match-card { padding: 24px 16px; font-size: 1.1rem; min-height: 80px; }
+  .quiz-option { padding: 20px 16px; font-size: 1.05rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="rainbow-bar"></div>
+<div class="sparkle-bg" id="sparkleBg"></div>
+
+<div class="container">
+  <div class="header">
+    <h1>✨ Pony English ✨</h1>
+    <div class="subtitle">四年级上册 · magical vocabulary adventure</div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-card">
+      <div class="stat-emoji">🌟</div>
+      <div class="stat-value" id="statLearned">0</div>
+      <div class="stat-label">Learned</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-emoji">🔥</div>
+      <div class="stat-value" id="statStreak">0</div>
+      <div class="stat-label">Streak</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-emoji">💎</div>
+      <div class="stat-value" id="statTotal">0</div>
+      <div class="stat-label">Total</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-emoji">🏆</div>
+      <div class="stat-value" id="statScore">0</div>
+      <div class="stat-label">Score</div>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Progress</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+    </div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="nav-tab active" data-tab="flashcard">
+      <span class="tab-icon">🃏</span>
+      Cards
+    </button>
+    <button class="nav-tab" data-tab="quiz">
+      <span class="tab-icon">🎯</span>
+      Quiz
+    </button>
+    <button class="nav-tab" data-tab="match">
+      <span class="tab-icon">🧩</span>
+      Match
+    </button>
+    <button class="nav-tab" data-tab="words">
+      <span class="tab-icon">📖</span>
+      Words
+    </button>
+  </div>
+
+  <!-- Flashcard Panel -->
+  <div class="panel active" id="panel-flashcard">
+    <div class="auto-play-toggle">
+      <input type="checkbox" id="autoPlayCheck" checked>
+      <label for="autoPlayCheck">🔊 Auto-play audio</label>
+    </div>
+    <div class="filter-pills" id="flashcardFilters"></div>
+    <div class="flashcard-container">
+      <div class="flashcard" id="flashcard" onclick="flipCard()">
+        <div class="flashcard-face flashcard-front">
+          <div class="flashcard-unit" id="fcUnit">Unit 1</div>
+          <div class="flashcard-counter" id="fcCounter">1 / 30</div>
+          <div class="flashcard-word" id="fcWord">loading...</div>
+          <div class="audio-row">
+            <button class="audio-btn audio-btn-en" onclick="event.stopPropagation(); playAudio('fc_en')" id="btn_fc_en">🔊</button>
+            <span class="audio-label">English</span>
+            <button class="audio-btn audio-btn-zh" onclick="event.stopPropagation(); playAudio('fc_zh')" id="btn_fc_zh">🔊</button>
+            <span class="audio-label">中文</span>
+          </div>
+          <div class="flashcard-hint">tap to reveal ✨</div>
+        </div>
+        <div class="flashcard-face flashcard-back">
+          <div class="flashcard-word" id="fcWordBack">—</div>
+          <div class="sentence-block">
+            <div class="sentence-en" id="fcSentEn"></div>
+            <div class="sentence-zh" id="fcSentZh"></div>
+            <div class="sentence-audio-row">
+              <button class="sentence-audio-btn" onclick="event.stopPropagation(); playAudio('fc_sent_en')">🔊 Listen</button>
+              <button class="sentence-audio-btn" onclick="event.stopPropagation(); playAudio('fc_sent_zh')">🔊 听一听</button>
+            </div>
+          </div>
+          <div class="flashcard-hint">tap to flip back</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button class="card-btn btn-hard" onclick="markCard('hard')">💔 Tricky</button>
+      <button class="card-btn btn-easy" onclick="markCard('easy')">💚 Got it!</button>
+    </div>
+  </div>
+
+  <!-- Quiz Panel -->
+  <div class="panel" id="panel-quiz">
+    <div class="filter-pills" id="quizFilters"></div>
+    <div id="quizArea"></div>
+  </div>
+
+  <!-- Match Panel -->
+  <div class="panel" id="panel-match">
+    <div style="text-align:center;margin-bottom:16px;">
+      <button class="card-btn" style="background:linear-gradient(135deg,var(--purple),var(--pink));color:white;box-shadow:0 4px 16px rgba(200,100,220,0.3);display:inline-flex;" onclick="startMatch()">🔄 New Round</button>
+    </div>
+    <div class="match-grid" id="matchGrid"></div>
+  </div>
+
+  <!-- Words Panel -->
+  <div class="panel" id="panel-words">
+    <div id="wordsList"></div>
+  </div>
+</div>
+
+<div class="celebration" id="celebration">
+  <div class="celebration-card">
+    <div class="celebration-emoji" id="celEmoji">🌈</div>
+    <div class="celebration-title" id="celTitle">Amazing!</div>
+    <div class="celebration-msg" id="celMsg">You're doing great!</div>
+    <button class="celebration-btn" onclick="closeCelebration()">Keep Going! ✨</button>
+  </div>
+</div>
+
+<script>
+// ===================== VOCABULARY DATA =====================
+const VOCAB = [
+  // Unit 1
+  {en:"get up",zh:"起床",unit:1,sent_en:"I get up at seven o'clock every morning.",sent_zh:"我每天早上七点起床。",au:{en:"audio/u1_get_up_en.mp3",zh:"audio/u1_get_up_zh.mp3",sen:"audio/u1_get_up_sent_en.mp3",saz:"audio/u1_get_up_sent_zh.mp3"}},
+  {en:"go to bed",zh:"上床睡觉",unit:1,sent_en:"I go to bed at nine o'clock.",sent_zh:"我九点钟上床睡觉。",au:{en:"audio/u1_go_to_bed_en.mp3",zh:"audio/u1_go_to_bed_zh.mp3",sen:"audio/u1_go_to_bed_sent_en.mp3",saz:"audio/u1_go_to_bed_sent_zh.mp3"}},
+  {en:"have breakfast",zh:"吃早饭",unit:1,sent_en:"I have breakfast with my family.",sent_zh:"我和家人一起吃早饭。",au:{en:"audio/u1_have_breakfast_en.mp3",zh:"audio/u1_have_breakfast_zh.mp3",sen:"audio/u1_have_breakfast_sent_en.mp3",saz:"audio/u1_have_breakfast_sent_zh.mp3"}},
+  {en:"go to school",zh:"去上学",unit:1,sent_en:"I go to school by bus.",sent_zh:"我坐公交车去上学。",au:{en:"audio/u1_go_to_school_en.mp3",zh:"audio/u1_go_to_school_zh.mp3",sen:"audio/u1_go_to_school_sent_en.mp3",saz:"audio/u1_go_to_school_sent_zh.mp3"}},
+  {en:"time",zh:"时间",unit:1,sent_en:"What time is it now?",sent_zh:"现在几点了？",au:{en:"audio/u1_time_en.mp3",zh:"audio/u1_time_zh.mp3",sen:"audio/u1_time_sent_en.mp3",saz:"audio/u1_time_sent_zh.mp3"}},
+  {en:"Hurry up",zh:"快点",unit:1,sent_en:"Hurry up! We are going to be late!",sent_zh:"快点！我们要迟到了！",au:{en:"audio/u1_Hurry_up_en.mp3",zh:"audio/u1_Hurry_up_zh.mp3",sen:"audio/u1_Hurry_up_sent_en.mp3",saz:"audio/u1_Hurry_up_sent_zh.mp3"}},
+  {en:"Take care",zh:"保重",unit:1,sent_en:"Take care! See you tomorrow!",sent_zh:"保重！明天见！",au:{en:"audio/u1_Take_care_en.mp3",zh:"audio/u1_Take_care_zh.mp3",sen:"audio/u1_Take_care_sent_en.mp3",saz:"audio/u1_Take_care_sent_zh.mp3"}},
+  {en:"new friend",zh:"新朋友",unit:1,sent_en:"This is my new friend from Canada.",sent_zh:"这是我的新朋友，来自加拿大。",au:{en:"audio/u1_new_friend_en.mp3",zh:"audio/u1_new_friend_zh.mp3",sen:"audio/u1_new_friend_sent_en.mp3",saz:"audio/u1_new_friend_sent_zh.mp3"}},
+  {en:"old friend",zh:"老朋友",unit:1,sent_en:"She is my old friend. We play together every day.",sent_zh:"她是我的老朋友。我们每天一起玩。",au:{en:"audio/u1_old_friend_en.mp3",zh:"audio/u1_old_friend_zh.mp3",sen:"audio/u1_old_friend_sent_en.mp3",saz:"audio/u1_old_friend_sent_zh.mp3"}},
+  {en:"Canada",zh:"加拿大",unit:1,sent_en:"My pen pal is from Canada.",sent_zh:"我的笔友来自加拿大。",au:{en:"audio/u1_Canada_en.mp3",zh:"audio/u1_Canada_zh.mp3",sen:"audio/u1_Canada_sent_en.mp3",saz:"audio/u1_Canada_sent_zh.mp3"}},
+  {en:"Australia",zh:"澳大利亚",unit:1,sent_en:"Kangaroos come from Australia.",sent_zh:"袋鼠来自澳大利亚。",au:{en:"audio/u1_Australia_en.mp3",zh:"audio/u1_Australia_zh.mp3",sen:"audio/u1_Australia_sent_en.mp3",saz:"audio/u1_Australia_sent_zh.mp3"}},
+  {en:"I'm from",zh:"我来自",unit:1,sent_en:"I'm from China. Where are you from?",sent_zh:"我来自中国。你来自哪里？",au:{en:"audio/u1_Im_from_en.mp3",zh:"audio/u1_Im_from_zh.mp3",sen:"audio/u1_Im_from_sent_en.mp3",saz:"audio/u1_Im_from_sent_zh.mp3"}},
+  {en:"How nice to see you",zh:"很高兴见到你",unit:1,sent_en:"How nice to see you at school today!",sent_zh:"今天在学校见到你真高兴！",au:{en:"audio/u1_How_nice_to_see_you_en.mp3",zh:"audio/u1_How_nice_to_see_you_zh.mp3",sen:"audio/u1_How_nice_to_see_you_sent_en.mp3",saz:"audio/u1_How_nice_to_see_you_sent_zh.mp3"}},
+  {en:"flowers",zh:"花",unit:1,sent_en:"The flowers are beautiful in spring.",sent_zh:"春天的花儿真漂亮。",au:{en:"audio/u1_flowers_en.mp3",zh:"audio/u1_flowers_zh.mp3",sen:"audio/u1_flowers_sent_en.mp3",saz:"audio/u1_flowers_sent_zh.mp3"}},
+  {en:"toys",zh:"玩具",unit:1,sent_en:"I have many toys in my room.",sent_zh:"我的房间里有很多玩具。",au:{en:"audio/u1_toys_en.mp3",zh:"audio/u1_toys_zh.mp3",sen:"audio/u1_toys_sent_en.mp3",saz:"audio/u1_toys_sent_zh.mp3"}},
+  {en:"books",zh:"书",unit:1,sent_en:"I like reading books.",sent_zh:"我喜欢读书。",au:{en:"audio/u1_books_en.mp3",zh:"audio/u1_books_zh.mp3",sen:"audio/u1_books_sent_en.mp3",saz:"audio/u1_books_sent_zh.mp3"}},
+  {en:"pens",zh:"钢笔",unit:1,sent_en:"I have three pens in my pencil case.",sent_zh:"我的铅笔盒里有三支钢笔。",au:{en:"audio/u1_pens_en.mp3",zh:"audio/u1_pens_zh.mp3",sen:"audio/u1_pens_sent_en.mp3",saz:"audio/u1_pens_sent_zh.mp3"}},
+  {en:"kid",zh:"小孩",unit:1,sent_en:"The kid is playing in the park.",sent_zh:"那个小孩在公园里玩。",au:{en:"audio/u1_kid_en.mp3",zh:"audio/u1_kid_zh.mp3",sen:"audio/u1_kid_sent_en.mp3",saz:"audio/u1_kid_sent_zh.mp3"}},
+  {en:"open the book",zh:"翻开书",unit:1,sent_en:"Please open your book to page ten.",sent_zh:"请把书翻到第十页。",au:{en:"audio/u1_open_the_book_en.mp3",zh:"audio/u1_open_the_book_zh.mp3",sen:"audio/u1_open_the_book_sent_en.mp3",saz:"audio/u1_open_the_book_sent_zh.mp3"}},
+  {en:"close the box",zh:"关上盒子",unit:1,sent_en:"Please close the box carefully.",sent_zh:"请小心地关上盒子。",au:{en:"audio/u1_close_the_box_en.mp3",zh:"audio/u1_close_the_box_zh.mp3",sen:"audio/u1_close_the_box_sent_en.mp3",saz:"audio/u1_close_the_box_sent_zh.mp3"}},
+  {en:"play a game",zh:"做游戏",unit:1,sent_en:"Let's play a game together!",sent_zh:"我们一起做游戏吧！",au:{en:"audio/u1_play_a_game_en.mp3",zh:"audio/u1_play_a_game_zh.mp3",sen:"audio/u1_play_a_game_sent_en.mp3",saz:"audio/u1_play_a_game_sent_zh.mp3"}},
+  {en:"begin",zh:"开始",unit:1,sent_en:"The class will begin at eight o'clock.",sent_zh:"课程八点钟开始。",au:{en:"audio/u1_begin_en.mp3",zh:"audio/u1_begin_zh.mp3",sen:"audio/u1_begin_sent_en.mp3",saz:"audio/u1_begin_sent_zh.mp3"}},
+  {en:"hungry",zh:"饥饿的",unit:1,sent_en:"I am very hungry. Let's eat!",sent_zh:"我好饿啊。我们吃饭吧！",au:{en:"audio/u1_hungry_en.mp3",zh:"audio/u1_hungry_zh.mp3",sen:"audio/u1_hungry_sent_en.mp3",saz:"audio/u1_hungry_sent_zh.mp3"}},
+  {en:"dinner",zh:"晚餐",unit:1,sent_en:"We have dinner at six o'clock.",sent_zh:"我们六点钟吃晚餐。",au:{en:"audio/u1_dinner_en.mp3",zh:"audio/u1_dinner_zh.mp3",sen:"audio/u1_dinner_sent_en.mp3",saz:"audio/u1_dinner_sent_zh.mp3"}},
+  {en:"lunch",zh:"午餐",unit:1,sent_en:"I have lunch at school every day.",sent_zh:"我每天在学校吃午餐。",au:{en:"audio/u1_lunch_en.mp3",zh:"audio/u1_lunch_zh.mp3",sen:"audio/u1_lunch_sent_en.mp3",saz:"audio/u1_lunch_sent_zh.mp3"}},
+  {en:"vegetables",zh:"蔬菜",unit:1,sent_en:"I like eating vegetables. They are healthy.",sent_zh:"我喜欢吃蔬菜。蔬菜很健康。",au:{en:"audio/u1_vegetables_en.mp3",zh:"audio/u1_vegetables_zh.mp3",sen:"audio/u1_vegetables_sent_en.mp3",saz:"audio/u1_vegetables_sent_zh.mp3"}},
+  {en:"home",zh:"回家",unit:1,sent_en:"I go home after school.",sent_zh:"放学后我回家。",au:{en:"audio/u1_home_en.mp3",zh:"audio/u1_home_zh.mp3",sen:"audio/u1_home_sent_en.mp3",saz:"audio/u1_home_sent_zh.mp3"}},
+  {en:"What's for dinner",zh:"晚饭吃什么",unit:1,sent_en:"Mom, what's for dinner tonight?",sent_zh:"妈妈，今晚晚饭吃什么？",au:{en:"audio/u1_Whats_for_dinner_en.mp3",zh:"audio/u1_Whats_for_dinner_zh.mp3",sen:"audio/u1_Whats_for_dinner_sent_en.mp3",saz:"audio/u1_Whats_for_dinner_sent_zh.mp3"}},
+  {en:"but",zh:"但是",unit:1,sent_en:"I like candy, but it's not healthy.",sent_zh:"我喜欢糖果，但是它不太健康。",au:{en:"audio/u1_but_en.mp3",zh:"audio/u1_but_zh.mp3",sen:"audio/u1_but_sent_en.mp3",saz:"audio/u1_but_sent_zh.mp3"}},
+  {en:"morning",zh:"早晨",unit:1,sent_en:"Good morning, teacher!",sent_zh:"早上好，老师！",au:{en:"audio/u1_morning_en.mp3",zh:"audio/u1_morning_zh.mp3",sen:"audio/u1_morning_sent_en.mp3",saz:"audio/u1_morning_sent_zh.mp3"}},
+  // Unit 2
+  {en:"weather",zh:"天气",unit:2,sent_en:"How is the weather today?",sent_zh:"今天天气怎么样？",au:{en:"audio/u2_weather_en.mp3",zh:"audio/u2_weather_zh.mp3",sen:"audio/u2_weather_sent_en.mp3",saz:"audio/u2_weather_sent_zh.mp3"}},
+  {en:"warm",zh:"温暖的",unit:2,sent_en:"Spring is warm and nice.",sent_zh:"春天温暖又舒服。",au:{en:"audio/u2_warm_en.mp3",zh:"audio/u2_warm_zh.mp3",sen:"audio/u2_warm_sent_en.mp3",saz:"audio/u2_warm_sent_zh.mp3"}},
+  {en:"cool",zh:"凉爽的",unit:2,sent_en:"Autumn is cool. I like this season.",sent_zh:"秋天很凉爽。我喜欢这个季节。",au:{en:"audio/u2_cool_en.mp3",zh:"audio/u2_cool_zh.mp3",sen:"audio/u2_cool_sent_en.mp3",saz:"audio/u2_cool_sent_zh.mp3"}},
+  {en:"hot",zh:"热的",unit:2,sent_en:"Summer is very hot.",sent_zh:"夏天非常热。",au:{en:"audio/u2_hot_en.mp3",zh:"audio/u2_hot_zh.mp3",sen:"audio/u2_hot_sent_en.mp3",saz:"audio/u2_hot_sent_zh.mp3"}},
+  {en:"fine",zh:"晴朗的",unit:2,sent_en:"It is a fine day today. Let's go outside!",sent_zh:"今天天气晴朗。我们出去玩吧！",au:{en:"audio/u2_fine_en.mp3",zh:"audio/u2_fine_zh.mp3",sen:"audio/u2_fine_sent_en.mp3",saz:"audio/u2_fine_sent_zh.mp3"}},
+  {en:"season",zh:"季节",unit:2,sent_en:"There are four seasons in a year.",sent_zh:"一年有四个季节。",au:{en:"audio/u2_season_en.mp3",zh:"audio/u2_season_zh.mp3",sen:"audio/u2_season_sent_en.mp3",saz:"audio/u2_season_sent_zh.mp3"}},
+  {en:"spring",zh:"春天",unit:2,sent_en:"Flowers bloom in spring.",sent_zh:"春天花儿开放。",au:{en:"audio/u2_spring_en.mp3",zh:"audio/u2_spring_zh.mp3",sen:"audio/u2_spring_sent_en.mp3",saz:"audio/u2_spring_sent_zh.mp3"}},
+  {en:"summer",zh:"夏天",unit:2,sent_en:"I can go swimming in summer.",sent_zh:"夏天我可以去游泳。",au:{en:"audio/u2_summer_en.mp3",zh:"audio/u2_summer_zh.mp3",sen:"audio/u2_summer_sent_en.mp3",saz:"audio/u2_summer_sent_zh.mp3"}},
+  {en:"autumn",zh:"秋天",unit:2,sent_en:"The leaves turn yellow in autumn.",sent_zh:"秋天树叶变黄了。",au:{en:"audio/u2_autumn_en.mp3",zh:"audio/u2_autumn_zh.mp3",sen:"audio/u2_autumn_sent_en.mp3",saz:"audio/u2_autumn_sent_zh.mp3"}},
+  {en:"winter",zh:"冬天",unit:2,sent_en:"It snows in winter. I can make a snowman!",sent_zh:"冬天下雪。我可以堆雪人！",au:{en:"audio/u2_winter_en.mp3",zh:"audio/u2_winter_zh.mp3",sen:"audio/u2_winter_sent_en.mp3",saz:"audio/u2_winter_sent_zh.mp3"}},
+  {en:"favourite",zh:"最喜欢的",unit:2,sent_en:"My favourite season is spring.",sent_zh:"我最喜欢的季节是春天。",au:{en:"audio/u2_favourite_en.mp3",zh:"audio/u2_favourite_zh.mp3",sen:"audio/u2_favourite_sent_en.mp3",saz:"audio/u2_favourite_sent_zh.mp3"}},
+  {en:"why",zh:"为什么",unit:2,sent_en:"Why do you like summer?",sent_zh:"你为什么喜欢夏天？",au:{en:"audio/u2_why_en.mp3",zh:"audio/u2_why_zh.mp3",sen:"audio/u2_why_sent_en.mp3",saz:"audio/u2_why_sent_zh.mp3"}},
+  {en:"because",zh:"因为",unit:2,sent_en:"I like summer because I can swim.",sent_zh:"我喜欢夏天，因为我可以游泳。",au:{en:"audio/u2_because_en.mp3",zh:"audio/u2_because_zh.mp3",sen:"audio/u2_because_sent_en.mp3",saz:"audio/u2_because_sent_zh.mp3"}},
+  {en:"tomato",zh:"西红柿",unit:2,sent_en:"I like tomatoes. They are yummy!",sent_zh:"我喜欢西红柿。很好吃！",au:{en:"audio/u2_tomato_en.mp3",zh:"audio/u2_tomato_zh.mp3",sen:"audio/u2_tomato_sent_en.mp3",saz:"audio/u2_tomato_sent_zh.mp3"}},
+  {en:"potato",zh:"土豆",unit:2,sent_en:"My mum cooks potatoes for dinner.",sent_zh:"妈妈晚餐做土豆。",au:{en:"audio/u2_potato_en.mp3",zh:"audio/u2_potato_zh.mp3",sen:"audio/u2_potato_sent_en.mp3",saz:"audio/u2_potato_sent_zh.mp3"}},
+  {en:"noodles",zh:"面条",unit:2,sent_en:"I love eating noodles for lunch.",sent_zh:"我喜欢午餐吃面条。",au:{en:"audio/u2_noodles_en.mp3",zh:"audio/u2_noodles_zh.mp3",sen:"audio/u2_noodles_sent_en.mp3",saz:"audio/u2_noodles_sent_zh.mp3"}},
+  {en:"candy",zh:"糖果",unit:2,sent_en:"I have a candy. It is very sweet!",sent_zh:"我有一颗糖果。好甜啊！",au:{en:"audio/u2_candy_en.mp3",zh:"audio/u2_candy_zh.mp3",sen:"audio/u2_candy_sent_en.mp3",saz:"audio/u2_candy_sent_zh.mp3"}},
+  {en:"talk about",zh:"谈论",unit:2,sent_en:"Let's talk about the weather.",sent_zh:"我们来谈谈天气吧。",au:{en:"audio/u2_talk_about_en.mp3",zh:"audio/u2_talk_about_zh.mp3",sen:"audio/u2_talk_about_sent_en.mp3",saz:"audio/u2_talk_about_sent_zh.mp3"}},
+  {en:"meal",zh:"一餐",unit:2,sent_en:"What is your favourite meal?",sent_zh:"你最喜欢吃什么？",au:{en:"audio/u2_meal_en.mp3",zh:"audio/u2_meal_zh.mp3",sen:"audio/u2_meal_sent_en.mp3",saz:"audio/u2_meal_sent_zh.mp3"}},
+  {en:"house",zh:"房子",unit:2,sent_en:"My house is near the school.",sent_zh:"我家在学校附近。",au:{en:"audio/u2_house_en.mp3",zh:"audio/u2_house_zh.mp3",sen:"audio/u2_house_sent_en.mp3",saz:"audio/u2_house_sent_zh.mp3"}},
+  {en:"window",zh:"窗户",unit:2,sent_en:"Please open the window.",sent_zh:"请打开窗户。",au:{en:"audio/u2_window_en.mp3",zh:"audio/u2_window_zh.mp3",sen:"audio/u2_window_sent_en.mp3",saz:"audio/u2_window_sent_zh.mp3"}},
+  {en:"door",zh:"门",unit:2,sent_en:"Please close the door.",sent_zh:"请关上门。",au:{en:"audio/u2_door_en.mp3",zh:"audio/u2_door_zh.mp3",sen:"audio/u2_door_sent_en.mp3",saz:"audio/u2_door_sent_zh.mp3"}},
+  {en:"wall",zh:"墙",unit:2,sent_en:"There is a picture on the wall.",sent_zh:"墙上有一幅画。",au:{en:"audio/u2_wall_en.mp3",zh:"audio/u2_wall_zh.mp3",sen:"audio/u2_wall_sent_en.mp3",saz:"audio/u2_wall_sent_zh.mp3"}},
+  {en:"eat ice cream",zh:"吃冰激凌",unit:2,sent_en:"I want to eat ice cream in summer.",sent_zh:"夏天我想吃冰激凌。",au:{en:"audio/u2_eat_ice_cream_en.mp3",zh:"audio/u2_eat_ice_cream_zh.mp3",sen:"audio/u2_eat_ice_cream_sent_en.mp3",saz:"audio/u2_eat_ice_cream_sent_zh.mp3"}},
+  {en:"eat moon cakes",zh:"吃月饼",unit:2,sent_en:"We eat moon cakes on Mid-Autumn Day.",sent_zh:"我们在中秋节吃月饼。",au:{en:"audio/u2_eat_moon_cakes_en.mp3",zh:"audio/u2_eat_moon_cakes_zh.mp3",sen:"audio/u2_eat_moon_cakes_sent_en.mp3",saz:"audio/u2_eat_moon_cakes_sent_zh.mp3"}},
+  {en:"go skating",zh:"去滑冰",unit:2,sent_en:"I can go skating in winter.",sent_zh:"冬天我可以去滑冰。",au:{en:"audio/u2_go_skating_en.mp3",zh:"audio/u2_go_skating_zh.mp3",sen:"audio/u2_go_skating_sent_en.mp3",saz:"audio/u2_go_skating_sent_zh.mp3"}},
+  {en:"go swimming",zh:"去游泳",unit:2,sent_en:"Let's go swimming this weekend!",sent_zh:"这周末我们去游泳吧！",au:{en:"audio/u2_go_swimming_en.mp3",zh:"audio/u2_go_swimming_zh.mp3",sen:"audio/u2_go_swimming_sent_en.mp3",saz:"audio/u2_go_swimming_sent_zh.mp3"}},
+  {en:"making things",zh:"做东西",unit:2,sent_en:"I like making things with paper.",sent_zh:"我喜欢用纸做东西。",au:{en:"audio/u2_making_things_en.mp3",zh:"audio/u2_making_things_zh.mp3",sen:"audio/u2_making_things_sent_en.mp3",saz:"audio/u2_making_things_sent_zh.mp3"}},
+  {en:"in pairs",zh:"两个一组",unit:2,sent_en:"Please work in pairs.",sent_zh:"请两人一组合作。",au:{en:"audio/u2_in_pairs_en.mp3",zh:"audio/u2_in_pairs_zh.mp3",sen:"audio/u2_in_pairs_sent_en.mp3",saz:"audio/u2_in_pairs_sent_zh.mp3"}},
+  {en:"afternoon",zh:"下午",unit:2,sent_en:"Good afternoon, class!",sent_zh:"同学们，下午好！",au:{en:"audio/u2_afternoon_en.mp3",zh:"audio/u2_afternoon_zh.mp3",sen:"audio/u2_afternoon_sent_en.mp3",saz:"audio/u2_afternoon_sent_zh.mp3"}},
+  // Unit 3
+  {en:"schoolgirl",zh:"女学生",unit:3,sent_en:"I am a schoolgirl. I study hard.",sent_zh:"我是一名女学生。我努力学习。",au:{en:"audio/u3_schoolgirl_en.mp3",zh:"audio/u3_schoolgirl_zh.mp3",sen:"audio/u3_schoolgirl_sent_en.mp3",saz:"audio/u3_schoolgirl_sent_zh.mp3"}},
+  {en:"schoolboy",zh:"男学生",unit:3,sent_en:"He is a schoolboy in our class.",sent_zh:"他是我们班的男学生。",au:{en:"audio/u3_schoolboy_en.mp3",zh:"audio/u3_schoolboy_zh.mp3",sen:"audio/u3_schoolboy_sent_en.mp3",saz:"audio/u3_schoolboy_sent_zh.mp3"}},
+  {en:"long hair",zh:"长发",unit:3,sent_en:"She has long hair. It is very pretty.",sent_zh:"她有长发。很漂亮。",au:{en:"audio/u3_long_hair_en.mp3",zh:"audio/u3_long_hair_zh.mp3",sen:"audio/u3_long_hair_sent_en.mp3",saz:"audio/u3_long_hair_sent_zh.mp3"}},
+  {en:"big face",zh:"大脸",unit:3,sent_en:"The baby has a big face. So cute!",sent_zh:"宝宝有张大脸。好可爱！",au:{en:"audio/u3_big_face_en.mp3",zh:"audio/u3_big_face_zh.mp3",sen:"audio/u3_big_face_sent_en.mp3",saz:"audio/u3_big_face_sent_zh.mp3"}},
+  {en:"quiet",zh:"安静的",unit:3,sent_en:"The library is very quiet.",sent_zh:"图书馆非常安静。",au:{en:"audio/u3_quiet_en.mp3",zh:"audio/u3_quiet_zh.mp3",sen:"audio/u3_quiet_sent_en.mp3",saz:"audio/u3_quiet_sent_zh.mp3"}},
+  {en:"young",zh:"年轻的",unit:3,sent_en:"My teacher is young and nice.",sent_zh:"我的老师年轻又友好。",au:{en:"audio/u3_young_en.mp3",zh:"audio/u3_young_zh.mp3",sen:"audio/u3_young_sent_en.mp3",saz:"audio/u3_young_sent_zh.mp3"}},
+  {en:"old",zh:"年老的",unit:3,sent_en:"My grandma is old but very healthy.",sent_zh:"我的奶奶年纪大了，但很健康。",au:{en:"audio/u3_old_en.mp3",zh:"audio/u3_old_zh.mp3",sen:"audio/u3_old_sent_en.mp3",saz:"audio/u3_old_sent_zh.mp3"}},
+  {en:"head",zh:"头",unit:3,sent_en:"Turn your head to the left.",sent_zh:"把头转向左边。",au:{en:"audio/u3_head_en.mp3",zh:"audio/u3_head_zh.mp3",sen:"audio/u3_head_sent_en.mp3",saz:"audio/u3_head_sent_zh.mp3"}},
+  {en:"dress",zh:"连衣裙",unit:3,sent_en:"I have a beautiful pink dress.",sent_zh:"我有一条漂亮的粉色连衣裙。",au:{en:"audio/u3_dress_en.mp3",zh:"audio/u3_dress_zh.mp3",sen:"audio/u3_dress_sent_en.mp3",saz:"audio/u3_dress_sent_zh.mp3"}},
+  {en:"skirt",zh:"裙子",unit:3,sent_en:"She is wearing a blue skirt.",sent_zh:"她穿着一条蓝色裙子。",au:{en:"audio/u3_skirt_en.mp3",zh:"audio/u3_skirt_zh.mp3",sen:"audio/u3_skirt_sent_en.mp3",saz:"audio/u3_skirt_sent_zh.mp3"}},
+  {en:"cap",zh:"便帽",unit:3,sent_en:"I wear a cap on sunny days.",sent_zh:"晴天我戴帽子。",au:{en:"audio/u3_cap_en.mp3",zh:"audio/u3_cap_zh.mp3",sen:"audio/u3_cap_sent_en.mp3",saz:"audio/u3_cap_sent_zh.mp3"}},
+  {en:"hat",zh:"帽子",unit:3,sent_en:"What a lovely hat!",sent_zh:"多么可爱的帽子啊！",au:{en:"audio/u3_hat_en.mp3",zh:"audio/u3_hat_zh.mp3",sen:"audio/u3_hat_sent_en.mp3",saz:"audio/u3_hat_sent_zh.mp3"}},
+  {en:"trousers",zh:"裤子",unit:3,sent_en:"These trousers are too long for me.",sent_zh:"这条裤子对我来说太长了。",au:{en:"audio/u3_trousers_en.mp3",zh:"audio/u3_trousers_zh.mp3",sen:"audio/u3_trousers_sent_en.mp3",saz:"audio/u3_trousers_sent_zh.mp3"}},
+  {en:"great",zh:"极好的",unit:3,sent_en:"That's great! Good job!",sent_zh:"太棒了！做得好！",au:{en:"audio/u3_great_en.mp3",zh:"audio/u3_great_zh.mp3",sen:"audio/u3_great_sent_en.mp3",saz:"audio/u3_great_sent_zh.mp3"}},
+  {en:"very",zh:"非常",unit:3,sent_en:"This book is very interesting.",sent_zh:"这本书非常有趣。",au:{en:"audio/u3_very_en.mp3",zh:"audio/u3_very_zh.mp3",sen:"audio/u3_very_sent_en.mp3",saz:"audio/u3_very_sent_zh.mp3"}},
+  {en:"car",zh:"小轿车",unit:3,sent_en:"My dad drives a car to work.",sent_zh:"我爸爸开车去上班。",au:{en:"audio/u3_car_en.mp3",zh:"audio/u3_car_zh.mp3",sen:"audio/u3_car_sent_en.mp3",saz:"audio/u3_car_sent_zh.mp3"}},
+  {en:"bus",zh:"公共汽车",unit:3,sent_en:"We take the bus to school.",sent_zh:"我们坐公交车去学校。",au:{en:"audio/u3_bus_en.mp3",zh:"audio/u3_bus_zh.mp3",sen:"audio/u3_bus_sent_en.mp3",saz:"audio/u3_bus_sent_zh.mp3"}},
+  {en:"train",zh:"火车",unit:3,sent_en:"The train is very fast.",sent_zh:"火车非常快。",au:{en:"audio/u3_train_en.mp3",zh:"audio/u3_train_zh.mp3",sen:"audio/u3_train_sent_en.mp3",saz:"audio/u3_train_sent_zh.mp3"}},
+  {en:"plane",zh:"飞机",unit:3,sent_en:"Look! A plane in the sky!",sent_zh:"看！天上有架飞机！",au:{en:"audio/u3_plane_en.mp3",zh:"audio/u3_plane_zh.mp3",sen:"audio/u3_plane_sent_en.mp3",saz:"audio/u3_plane_sent_zh.mp3"}},
+  {en:"ship",zh:"轮船",unit:3,sent_en:"The ship is very big.",sent_zh:"轮船非常大。",au:{en:"audio/u3_ship_en.mp3",zh:"audio/u3_ship_zh.mp3",sen:"audio/u3_ship_sent_en.mp3",saz:"audio/u3_ship_sent_zh.mp3"}},
+  {en:"pet",zh:"宠物",unit:3,sent_en:"I have a pet cat. Her name is Mimi.",sent_zh:"我有一只宠物猫。她叫咪咪。",au:{en:"audio/u3_pet_en.mp3",zh:"audio/u3_pet_zh.mp3",sen:"audio/u3_pet_sent_en.mp3",saz:"audio/u3_pet_sent_zh.mp3"}},
+  {en:"try again",zh:"再试一次",unit:3,sent_en:"Don't give up! Try again!",sent_zh:"不要放弃！再试一次！",au:{en:"audio/u3_try_again_en.mp3",zh:"audio/u3_try_again_zh.mp3",sen:"audio/u3_try_again_sent_en.mp3",saz:"audio/u3_try_again_sent_zh.mp3"}},
+  {en:"do housework",zh:"做家务",unit:3,sent_en:"I help my mum do housework.",sent_zh:"我帮妈妈做家务。",au:{en:"audio/u3_do_housework_en.mp3",zh:"audio/u3_do_housework_zh.mp3",sen:"audio/u3_do_housework_sent_en.mp3",saz:"audio/u3_do_housework_sent_zh.mp3"}},
+  {en:"play computer games",zh:"玩电脑游戏",unit:3,sent_en:"I sometimes play computer games.",sent_zh:"我有时候玩电脑游戏。",au:{en:"audio/u3_play_computer_games_en.mp3",zh:"audio/u3_play_computer_games_zh.mp3",sen:"audio/u3_play_computer_games_sent_en.mp3",saz:"audio/u3_play_computer_games_sent_zh.mp3"}},
+  {en:"ride a bike",zh:"骑自行车",unit:3,sent_en:"I can ride a bike now!",sent_zh:"我现在会骑自行车了！",au:{en:"audio/u3_ride_a_bike_en.mp3",zh:"audio/u3_ride_a_bike_zh.mp3",sen:"audio/u3_ride_a_bike_sent_en.mp3",saz:"audio/u3_ride_a_bike_sent_zh.mp3"}},
+  {en:"water flowers",zh:"浇花",unit:3,sent_en:"I water the flowers every day.",sent_zh:"我每天给花浇水。",au:{en:"audio/u3_water_flowers_en.mp3",zh:"audio/u3_water_flowers_zh.mp3",sen:"audio/u3_water_flowers_sent_en.mp3",saz:"audio/u3_water_flowers_sent_zh.mp3"}},
+  // Unit 4
+  {en:"twenty-one",zh:"二十一",unit:4,sent_en:"I have twenty-one books.",sent_zh:"我有二十一本书。",au:{en:"audio/u4_twenty-one_en.mp3",zh:"audio/u4_twenty-one_zh.mp3",sen:"audio/u4_twenty-one_sent_en.mp3",saz:"audio/u4_twenty-one_sent_zh.mp3"}},
+  {en:"thirty",zh:"三十",unit:4,sent_en:"There are thirty students in my class.",sent_zh:"我们班有三十个学生。",au:{en:"audio/u4_thirty_en.mp3",zh:"audio/u4_thirty_zh.mp3",sen:"audio/u4_thirty_sent_en.mp3",saz:"audio/u4_thirty_sent_zh.mp3"}},
+  {en:"thirty-two",zh:"三十二",unit:4,sent_en:"My school has thirty-two classrooms.",sent_zh:"我的学校有三十二间教室。",au:{en:"audio/u4_thirty-two_en.mp3",zh:"audio/u4_thirty-two_zh.mp3",sen:"audio/u4_thirty-two_sent_en.mp3",saz:"audio/u4_thirty-two_sent_zh.mp3"}},
+  {en:"forty",zh:"四十",unit:4,sent_en:"There are forty desks in the room.",sent_zh:"房间里有四十张桌子。",au:{en:"audio/u4_forty_en.mp3",zh:"audio/u4_forty_zh.mp3",sen:"audio/u4_forty_sent_en.mp3",saz:"audio/u4_forty_sent_zh.mp3"}},
+  {en:"forty-three",zh:"四十三",unit:4,sent_en:"I can count to forty-three!",sent_zh:"我能数到四十三！",au:{en:"audio/u4_forty-three_en.mp3",zh:"audio/u4_forty-three_zh.mp3",sen:"audio/u4_forty-three_sent_en.mp3",saz:"audio/u4_forty-three_sent_zh.mp3"}},
+  {en:"fifty",zh:"五十",unit:4,sent_en:"There are fifty stars on the flag.",sent_zh:"旗子上有五十颗星星。",au:{en:"audio/u4_fifty_en.mp3",zh:"audio/u4_fifty_zh.mp3",sen:"audio/u4_fifty_sent_en.mp3",saz:"audio/u4_fifty_sent_zh.mp3"}},
+  {en:"sixty",zh:"六十",unit:4,sent_en:"My grandma is sixty years old.",sent_zh:"我的奶奶六十岁了。",au:{en:"audio/u4_sixty_en.mp3",zh:"audio/u4_sixty_zh.mp3",sen:"audio/u4_sixty_sent_en.mp3",saz:"audio/u4_sixty_sent_zh.mp3"}},
+  {en:"seventy",zh:"七十",unit:4,sent_en:"Seventy plus thirty is one hundred.",sent_zh:"七十加三十等于一百。",au:{en:"audio/u4_seventy_en.mp3",zh:"audio/u4_seventy_zh.mp3",sen:"audio/u4_seventy_sent_en.mp3",saz:"audio/u4_seventy_sent_zh.mp3"}},
+  {en:"eighty",zh:"八十",unit:4,sent_en:"There are eighty students in the playground.",sent_zh:"操场上有八十个学生。",au:{en:"audio/u4_eighty_en.mp3",zh:"audio/u4_eighty_zh.mp3",sen:"audio/u4_eighty_sent_en.mp3",saz:"audio/u4_eighty_sent_zh.mp3"}},
+  {en:"ninety",zh:"九十",unit:4,sent_en:"Ninety minus ten is eighty.",sent_zh:"九十减十等于八十。",au:{en:"audio/u4_ninety_en.mp3",zh:"audio/u4_ninety_zh.mp3",sen:"audio/u4_ninety_sent_en.mp3",saz:"audio/u4_ninety_sent_zh.mp3"}},
+  {en:"one hundred",zh:"一百",unit:4,sent_en:"I have one hundred stickers!",sent_zh:"我有一百张贴纸！",au:{en:"audio/u4_one_hundred_en.mp3",zh:"audio/u4_one_hundred_zh.mp3",sen:"audio/u4_one_hundred_sent_en.mp3",saz:"audio/u4_one_hundred_sent_zh.mp3"}},
+  {en:"number",zh:"数字",unit:4,sent_en:"What is your favourite number?",sent_zh:"你最喜欢的数字是什么？",au:{en:"audio/u4_number_en.mp3",zh:"audio/u4_number_zh.mp3",sen:"audio/u4_number_sent_en.mp3",saz:"audio/u4_number_sent_zh.mp3"}},
+  {en:"plus",zh:"加上",unit:4,sent_en:"Five plus five is ten.",sent_zh:"五加五等于十。",au:{en:"audio/u4_plus_en.mp3",zh:"audio/u4_plus_zh.mp3",sen:"audio/u4_plus_sent_en.mp3",saz:"audio/u4_plus_sent_zh.mp3"}},
+  {en:"minus",zh:"减去",unit:4,sent_en:"Ten minus three is seven.",sent_zh:"十减三等于七。",au:{en:"audio/u4_minus_en.mp3",zh:"audio/u4_minus_zh.mp3",sen:"audio/u4_minus_sent_en.mp3",saz:"audio/u4_minus_sent_zh.mp3"}},
+  {en:"do sums",zh:"做加法",unit:4,sent_en:"I can do sums very quickly.",sent_zh:"我能很快地做加法。",au:{en:"audio/u4_do_sums_en.mp3",zh:"audio/u4_do_sums_zh.mp3",sen:"audio/u4_do_sums_sent_en.mp3",saz:"audio/u4_do_sums_sent_zh.mp3"}},
+  {en:"leg",zh:"腿",unit:4,sent_en:"I hurt my leg yesterday.",sent_zh:"我昨天伤到了腿。",au:{en:"audio/u4_leg_en.mp3",zh:"audio/u4_leg_zh.mp3",sen:"audio/u4_leg_sent_en.mp3",saz:"audio/u4_leg_sent_zh.mp3"}},
+  {en:"tail",zh:"尾巴",unit:4,sent_en:"The dog wags its tail when it is happy.",sent_zh:"狗高兴的时候会摇尾巴。",au:{en:"audio/u4_tail_en.mp3",zh:"audio/u4_tail_zh.mp3",sen:"audio/u4_tail_sent_en.mp3",saz:"audio/u4_tail_sent_zh.mp3"}},
+  {en:"arm",zh:"手臂",unit:4,sent_en:"I broke my arm last year.",sent_zh:"我去年摔断了手臂。",au:{en:"audio/u4_arm_en.mp3",zh:"audio/u4_arm_zh.mp3",sen:"audio/u4_arm_sent_en.mp3",saz:"audio/u4_arm_sent_zh.mp3"}},
+  {en:"strong",zh:"强壮的",unit:4,sent_en:"My dad is very strong.",sent_zh:"我爸爸非常强壮。",au:{en:"audio/u4_strong_en.mp3",zh:"audio/u4_strong_zh.mp3",sen:"audio/u4_strong_sent_en.mp3",saz:"audio/u4_strong_sent_zh.mp3"}},
+  {en:"grey",zh:"灰色的",unit:4,sent_en:"The elephant is grey.",sent_zh:"大象是灰色的。",au:{en:"audio/u4_grey_en.mp3",zh:"audio/u4_grey_zh.mp3",sen:"audio/u4_grey_sent_en.mp3",saz:"audio/u4_grey_sent_zh.mp3"}},
+  {en:"ball",zh:"球",unit:4,sent_en:"Let's play with the ball!",sent_zh:"我们玩球吧！",au:{en:"audio/u4_ball_en.mp3",zh:"audio/u4_ball_zh.mp3",sen:"audio/u4_ball_sent_en.mp3",saz:"audio/u4_ball_sent_zh.mp3"}},
+  {en:"on",zh:"在……上",unit:4,sent_en:"The book is on the desk.",sent_zh:"书在桌子上。",au:{en:"audio/u4_on_en.mp3",zh:"audio/u4_on_zh.mp3",sen:"audio/u4_on_sent_en.mp3",saz:"audio/u4_on_sent_zh.mp3"}},
+  {en:"in",zh:"在……里",unit:4,sent_en:"The cat is in the box.",sent_zh:"猫在盒子里。",au:{en:"audio/u4_in_en.mp3",zh:"audio/u4_in_zh.mp3",sen:"audio/u4_in_sent_en.mp3",saz:"audio/u4_in_sent_zh.mp3"}},
+  {en:"under",zh:"在……下",unit:4,sent_en:"The ball is under the table.",sent_zh:"球在桌子下面。",au:{en:"audio/u4_under_en.mp3",zh:"audio/u4_under_zh.mp3",sen:"audio/u4_under_sent_en.mp3",saz:"audio/u4_under_sent_zh.mp3"}},
+  {en:"behind",zh:"在……后",unit:4,sent_en:"The tree is behind the house.",sent_zh:"树在房子后面。",au:{en:"audio/u4_behind_en.mp3",zh:"audio/u4_behind_zh.mp3",sen:"audio/u4_behind_sent_en.mp3",saz:"audio/u4_behind_sent_zh.mp3"}},
+  {en:"spider",zh:"蜘蛛",unit:4,sent_en:"I see a spider on the wall!",sent_zh:"我看到墙上有一只蜘蛛！",au:{en:"audio/u4_spider_en.mp3",zh:"audio/u4_spider_zh.mp3",sen:"audio/u4_spider_sent_en.mp3",saz:"audio/u4_spider_sent_zh.mp3"}},
+  {en:"move",zh:"移动",unit:4,sent_en:"Please move your chair to the left.",sent_zh:"请把你的椅子往左移。",au:{en:"audio/u4_move_en.mp3",zh:"audio/u4_move_zh.mp3",sen:"audio/u4_move_sent_en.mp3",saz:"audio/u4_move_sent_zh.mp3"}},
+  {en:"play basketball",zh:"打篮球",unit:4,sent_en:"I like to play basketball after school.",sent_zh:"我喜欢放学后打篮球。",au:{en:"audio/u4_play_basketball_en.mp3",zh:"audio/u4_play_basketball_zh.mp3",sen:"audio/u4_play_basketball_sent_en.mp3",saz:"audio/u4_play_basketball_sent_zh.mp3"}},
+  {en:"play ping-pong",zh:"打乒乓球",unit:4,sent_en:"Can you play ping-pong?",sent_zh:"你会打乒乓球吗？",au:{en:"audio/u4_play_ping-pong_en.mp3",zh:"audio/u4_play_ping-pong_zh.mp3",sen:"audio/u4_play_ping-pong_sent_en.mp3",saz:"audio/u4_play_ping-pong_sent_zh.mp3"}},
+  {en:"wonderful",zh:"太棒了",unit:4,sent_en:"That's wonderful! Well done!",sent_zh:"太棒了！做得好！",au:{en:"audio/u4_wonderful_en.mp3",zh:"audio/u4_wonderful_zh.mp3",sen:"audio/u4_wonderful_sent_en.mp3",saz:"audio/u4_wonderful_sent_zh.mp3"}},
+  {en:"evening",zh:"晚上",unit:4,sent_en:"I watch TV in the evening.",sent_zh:"我晚上看电视。",au:{en:"audio/u4_evening_en.mp3",zh:"audio/u4_evening_zh.mp3",sen:"audio/u4_evening_sent_en.mp3",saz:"audio/u4_evening_sent_zh.mp3"}},
+];
+
+const UNITS = {
+  1: { name: "Our School Day", icon: "🏫", color: "linear-gradient(135deg, #ff6bcb, #ff8fab)" },
+  2: { name: "Things Around Us", icon: "🌍", color: "linear-gradient(135deg, #72efdd, #5de6c8)" },
+  3: { name: "About Me", icon: "🦄", color: "linear-gradient(135deg, #c77dff, #e0aaff)" },
+  4: { name: "Our Lessons", icon: "📚", color: "linear-gradient(135deg, #a0c4ff, #72efdd)" },
+};
+
+const ENCOURAGEMENTS = [
+  { emoji: "🌈", title: "Rainbow-tastic!", msg: "You're galloping through these words like Rainbow Dash!" },
+  { emoji: "✨", title: "Sparkle Power!", msg: "Twilight Sparkle would be so proud of you!" },
+  { emoji: "🦋", title: "Flutter Amazing!", msg: "Fluttershy is cheering for you from the meadow!" },
+  { emoji: "🍰", title: "Sweet as Pie!", msg: "Pinkie Pie says that was SUPER duper awesome!" },
+  { emoji: "💎", title: "Shining Star!", msg: "Rarity thinks your work is absolutely divine!" },
+  { emoji: "🚀", title: "Speedy Learner!", msg: "Like Rainbow Dash at the Sonic Rainboom!" },
+  { emoji: "🌸", title: "So Lovely!", msg: "You're making Equestria proud!" },
+  { emoji: "⭐", title: "Wonderful!", msg: "The magic of friendship powers your learning!" },
+];
+
+// ===================== STATE =====================
+let state = loadState();
+let currentTab = 'flashcard';
+let fcIndex = 0;
+let fcFlipped = false;
+let fcFilter = 'all';
+let quizFilter = 'all';
+let quizQueue = [];
+let quizCurrent = null;
+let matchSelected = null;
+let matchPairs = [];
+let currentAudio = null;
+let currentAudioBtn = null;
+
+function defaultState() {
+  const mastery = {};
+  VOCAB.forEach((v, i) => { mastery[i] = 0; });
+  return { mastery, score: 0, streak: 0, totalAnswered: 0 };
+}
+
+function loadState() {
+  try {
+    const s = JSON.parse(localStorage.getItem('pony-english-state'));
+    if (s && s.mastery) return s;
+  } catch(e) {}
+  return defaultState();
+}
+
+function saveState() {
+  localStorage.setItem('pony-english-state', JSON.stringify(state));
+}
+
+// ===================== AUDIO =====================
+function playAudio(key) {
+  // Stop any currently playing audio
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    if (currentAudioBtn) currentAudioBtn.classList.remove('playing');
+  }
+
+  // Find the vocab item and audio path
+  let audioPath = null;
+  let btnId = null;
+
+  if (key === 'fc_en') {
+    const pool = getFiltered(fcFilter, VOCAB);
+    const v = pool[fcIndex];
+    audioPath = v.au.en;
+    btnId = 'btn_fc_en';
+  } else if (key === 'fc_zh') {
+    const pool = getFiltered(fcFilter, VOCAB);
+    const v = pool[fcIndex];
+    audioPath = v.au.zh;
+    btnId = 'btn_fc_zh';
+  } else if (key === 'fc_sent_en') {
+    const pool = getFiltered(fcFilter, VOCAB);
+    const v = pool[fcIndex];
+    audioPath = v.au.sen;
+  } else if (key === 'fc_sent_zh') {
+    const pool = getFiltered(fcFilter, VOCAB);
+    const v = pool[fcIndex];
+    audioPath = v.au.saz;
+  } else if (key.startsWith('word_')) {
+    const idx = parseInt(key.split('_')[1]);
+    const type = key.split('_')[2];
+    const v = VOCAB[idx];
+    if (v) {
+      audioPath = type === 'en' ? v.au.en : v.au.zh;
+    }
+  } else if (key.startsWith('wordsent_')) {
+    const idx = parseInt(key.split('_')[1]);
+    const type = key.split('_')[2];
+    const v = VOCAB[idx];
+    if (v) {
+      audioPath = type === 'en' ? v.au.sen : v.au.saz;
+    }
+  }
+
+  if (!audioPath) return;
+
+  const audio = new Audio(audioPath);
+  currentAudio = audio;
+
+  const btn = btnId ? document.getElementById(btnId) : null;
+  if (btn) {
+    currentAudioBtn = btn;
+    btn.classList.add('playing');
+  }
+
+  audio.onended = () => {
+    if (currentAudioBtn) currentAudioBtn.classList.remove('playing');
+    currentAudio = null;
+    currentAudioBtn = null;
+  };
+
+  audio.onerror = () => {
+    console.warn('Audio error:', audioPath);
+    if (currentAudioBtn) currentAudioBtn.classList.remove('playing');
+    currentAudio = null;
+    currentAudioBtn = null;
+  };
+
+  audio.play().catch(e => console.warn('Audio play failed:', e));
+}
+
+function playAudioDirect(audioPath) {
+  // Stop any currently playing audio
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    if (currentAudioBtn) currentAudioBtn.classList.remove('playing');
+  }
+
+  if (!audioPath) return;
+
+  const audio = new Audio(audioPath);
+  currentAudio = audio;
+  currentAudioBtn = null;
+
+  audio.onended = () => {
+    if (currentAudioBtn) currentAudioBtn.classList.remove('playing');
+    currentAudio = null;
+    currentAudioBtn = null;
+  };
+
+  audio.onerror = () => {
+    console.warn('Audio error:', audioPath);
+    currentAudio = null;
+    currentAudioBtn = null;
+  };
+
+  audio.play().catch(e => console.warn('Audio play failed:', e));
+}
+
+function autoPlayEn() {
+  if (document.getElementById('autoPlayCheck').checked) {
+    setTimeout(() => playAudio('fc_en'), 300);
+  }
+}
+
+// ===================== UTILITIES =====================
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function getFiltered(filter, pool) {
+  if (filter === 'all') return pool;
+  if (filter.startsWith('unit')) return pool.filter(v => v.unit === parseInt(filter.slice(4)));
+  return pool.filter(v => v.cat === filter);
+}
+
+function vocabIndex(v) { return VOCAB.indexOf(v); }
+
+// ===================== SPARKLES =====================
+function createSparkles() {
+  const bg = document.getElementById('sparkleBg');
+  for (let i = 0; i < 30; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.width = s.style.height = (3 + Math.random() * 5) + 'px';
+    s.style.animationDuration = (6 + Math.random() * 10) + 's';
+    s.style.animationDelay = Math.random() * 10 + 's';
+    bg.appendChild(s);
+  }
+}
+
+// ===================== TABS =====================
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + tab));
+  if (tab === 'flashcard') initFlashcard();
+  if (tab === 'quiz') initQuiz();
+  if (tab === 'match') startMatch();
+  if (tab === 'words') renderWords();
+}
+
+// ===================== STATS =====================
+function updateStats() {
+  const learned = Object.values(state.mastery).filter(v => v >= 2).length;
+  document.getElementById('statLearned').textContent = learned;
+  document.getElementById('statStreak').textContent = state.streak;
+  document.getElementById('statTotal').textContent = VOCAB.length;
+  document.getElementById('statScore').textContent = state.score;
+  const pct = Math.round((learned / VOCAB.length) * 100);
+  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
+
+  if (learned === VOCAB.length && VOCAB.length > 0) {
+    showCelebration('🏆', 'You Mastered Them All!', 'Every single word is yours! You are the true Princess of Learning! 👑✨');
+  }
+}
+
+// ===================== FLASHCARD =====================
+function buildFilterPills(containerId, currentFilter, onChange) {
+  const container = document.getElementById(containerId);
+  const filters = [
+    { id: 'all', label: '🌈 All' },
+    { id: 'unit1', label: '🏫 Unit 1' },
+    { id: 'unit2', label: '🌍 Unit 2' },
+    { id: 'unit3', label: '🦄 Unit 3' },
+    { id: 'unit4', label: '📚 Unit 4' },
+  ];
+  container.innerHTML = '';
+  filters.forEach(f => {
+    const pill = document.createElement('button');
+    pill.className = 'filter-pill' + (currentFilter === f.id ? ' active' : '');
+    pill.textContent = f.label;
+    pill.onclick = () => { onChange(f.id); };
+    container.appendChild(pill);
+  });
+}
+
+function initFlashcard() {
+  buildFilterPills('flashcardFilters', fcFilter, (f) => { fcFilter = f; fcIndex = 0; initFlashcard(); });
+  const pool = getFiltered(fcFilter, VOCAB);
+  if (pool.length === 0) return;
+  fcIndex = fcIndex % pool.length;
+  renderFlashcard(pool);
+}
+
+function renderFlashcard(pool) {
+  if (!pool) pool = getFiltered(fcFilter, VOCAB);
+  const v = pool[fcIndex];
+  const card = document.getElementById('flashcard');
+  card.classList.remove('flipped');
+  fcFlipped = false;
+
+  document.getElementById('fcUnit').textContent = `Unit ${v.unit}`;
+  document.getElementById('fcCounter').textContent = `${fcIndex + 1} / ${pool.length}`;
+  document.getElementById('fcWord').textContent = v.en;
+  document.getElementById('fcWordBack').textContent = v.zh;
+  document.getElementById('fcSentEn').textContent = v.sent_en;
+  document.getElementById('fcSentZh').textContent = v.sent_zh;
+
+  autoPlayEn();
+}
+
+function flipCard() {
+  const card = document.getElementById('flashcard');
+  fcFlipped = !fcFlipped;
+  card.classList.toggle('flipped', fcFlipped);
+}
+
+function markCard(difficulty) {
+  const pool = getFiltered(fcFilter, VOCAB);
+  const v = pool[fcIndex];
+  const idx = vocabIndex(v);
+
+  if (difficulty === 'easy') {
+    state.mastery[idx] = Math.min((state.mastery[idx] || 0) + 1, 3);
+    state.score += 10;
+    state.streak++;
+  } else {
+    state.mastery[idx] = Math.max((state.mastery[idx] || 0) - 1, 0);
+    state.streak = 0;
+  }
+  saveState();
+  updateStats();
+
+  fcIndex = (fcIndex + 1) % pool.length;
+  if (fcIndex === 0 && difficulty === 'easy') {
+    showCelebration();
+  }
+  renderFlashcard(pool);
+}
+
+// ===================== QUIZ =====================
+function initQuiz() {
+  buildFilterPills('quizFilters', quizFilter, (f) => { quizFilter = f; startQuiz(); });
+  startQuiz();
+}
+
+function startQuiz() {
+  const pool = getFiltered(quizFilter, VOCAB);
+  quizQueue = shuffle(pool).slice(0, Math.min(10, pool.length));
+  nextQuiz();
+}
+
+function nextQuiz() {
+  if (quizQueue.length === 0) {
+    document.getElementById('quizArea').innerHTML = `
+      <div class="empty-state">
+        <div class="empty-emoji">🎉</div>
+        <p>Round complete! Start a new one?</p>
+        <button class="card-btn" style="background:linear-gradient(135deg,var(--purple),var(--pink));color:white;margin-top:16px;display:inline-flex;box-shadow:0 4px 16px rgba(200,100,220,0.3);" onclick="startQuiz()">🔄 New Round</button>
+      </div>`;
+    return;
+  }
+
+  const current = quizQueue.shift();
+  quizCurrent = current;
+  const others = shuffle(VOCAB.filter(v => v !== current)).slice(0, 3);
+  const options = shuffle([current, ...others]);
+
+  const area = document.getElementById('quizArea');
+  area.innerHTML = `
+    <div class="quiz-question">
+      <div class="quiz-prompt">What does this mean? 🤔</div>
+      <div class="quiz-word">${current.en}</div>
+      <div class="quiz-audio-row">
+        <button class="audio-btn audio-btn-en" onclick="playAudioDirect(quizCurrent?.au?.en)" style="width:36px;height:36px;font-size:1rem;">🔊</button>
+        <button class="audio-btn audio-btn-zh" onclick="playAudioDirect(quizCurrent?.au?.zh)" style="width:36px;height:36px;font-size:1rem;">🔊</button>
+      </div>
+      <div class="quiz-unit-tag">Unit ${current.unit}</div>
+    </div>
+    <div class="quiz-options">
+      ${options.map((o, i) => `<button class="quiz-option" data-idx="${i}" onclick="answerQuiz(this, '${o.zh.replace(/'/g, "\\'")}', '${current.zh.replace(/'/g, "\\'")}')">${o.zh}</button>`).join('')}
+    </div>`;
+
+  // Auto-play the English word
+  setTimeout(() => playAudioDirect(quizCurrent?.au?.en), 400);
+}
+
+function answerQuiz(btn, chosen, correct) {
+  const buttons = document.querySelectorAll('.quiz-option');
+  buttons.forEach(b => b.style.pointerEvents = 'none');
+
+  if (chosen === correct) {
+    btn.classList.add('correct');
+    const idx = vocabIndex(quizCurrent);
+    state.mastery[idx] = Math.min((state.mastery[idx] || 0) + 1, 3);
+    state.score += 15;
+    state.streak++;
+    state.totalAnswered++;
+  } else {
+    btn.classList.add('wrong');
+    buttons.forEach(b => { if (b.textContent.trim() === correct) b.classList.add('correct'); });
+    const idx = vocabIndex(quizCurrent);
+    state.mastery[idx] = Math.max((state.mastery[idx] || 0) - 1, 0);
+    state.streak = 0;
+    state.totalAnswered++;
+  }
+  saveState();
+  updateStats();
+
+  setTimeout(nextQuiz, 1200);
+}
+
+// ===================== MATCH =====================
+function startMatch() {
+  const pool = shuffle(VOCAB).slice(0, 5);
+  const enCards = pool.map(v => ({ type: 'en', text: v.en, pairId: vocabIndex(v) }));
+  const zhCards = pool.map(v => ({ type: 'zh', text: v.zh, pairId: vocabIndex(v) }));
+  matchPairs = shuffle([...enCards, ...zhCards]);
+  matchSelected = null;
+  renderMatch();
+}
+
+function renderMatch() {
+  const grid = document.getElementById('matchGrid');
+  grid.innerHTML = matchPairs.map((c, i) => {
+    return `
+    <div class="match-card ${c.type} ${c.matched ? 'matched' : ''}" data-idx="${i}" data-pairid="${c.pairId}" data-cardtype="${c.type}" onclick="selectMatch(${i})">
+      <button class="match-audio" onclick="event.stopPropagation(); playMatchAudio(this.parentElement)">🔊</button>
+      ${c.text}
+    </div>`;
+  }).join('');
+}
+
+function playMatchAudio(cardEl) {
+  const pairId = parseInt(cardEl.dataset.pairid);
+  const cardType = cardEl.dataset.cardtype;
+  const v = VOCAB[pairId];
+  if (v) {
+    const audioPath = cardType === 'en' ? v.au.en : v.au.zh;
+    playAudioDirect(audioPath);
+  }
+}
+
+function selectMatch(idx) {
+  const card = matchPairs[idx];
+  if (card.matched) return;
+
+  if (matchSelected === null) {
+    matchSelected = idx;
+    document.querySelector(`.match-card[data-idx="${idx}"]`).classList.add('selected');
+    // Auto-play audio when selecting first card
+    const v = VOCAB[card.pairId];
+    if (v) {
+      const audioPath = card.type === 'en' ? v.au.en : v.au.zh;
+      playAudioDirect(audioPath);
+    }
+  } else {
+    const prev = matchPairs[matchSelected];
+    const prevEl = document.querySelector(`.match-card[data-idx="${matchSelected}"]`);
+    const curEl = document.querySelector(`.match-card[data-idx="${idx}"]`);
+
+    if (matchSelected === idx) {
+      prevEl.classList.remove('selected');
+      matchSelected = null;
+      return;
+    }
+
+    // Play audio for the second card being clicked
+    const v2 = VOCAB[card.pairId];
+    if (v2) {
+      const audioPath2 = card.type === 'en' ? v2.au.en : v2.au.zh;
+      playAudioDirect(audioPath2);
+    }
+
+    if (prev.pairId === card.pairId && prev.type !== card.type) {
+      prevEl.classList.remove('selected');
+      prevEl.classList.add('matched');
+      curEl.classList.add('matched');
+      state.mastery[prev.pairId] = Math.min((state.mastery[prev.pairId] || 0) + 1, 3);
+      state.score += 20;
+      state.streak++;
+      matchSelected = null;
+
+      if (matchPairs.every(c => c.matched)) {
+        saveState();
+        updateStats();
+        setTimeout(() => {
+          showCelebration('🧩', 'Perfect Match!', 'You matched all the pairs perfectly! Friendship is magic!');
+        }, 600);
+      }
+    } else {
+      prevEl.classList.remove('selected');
+      prevEl.classList.add('wrong-match');
+      curEl.classList.add('wrong-match');
+      state.streak = 0;
+      matchSelected = null;
+      setTimeout(() => {
+        document.querySelectorAll('.wrong-match').forEach(el => el.classList.remove('wrong-match'));
+      }, 400);
+    }
+    saveState();
+    updateStats();
+  }
+}
+
+// ===================== WORDS LIST =====================
+function renderWords() {
+  const container = document.getElementById('wordsList');
+  container.innerHTML = '';
+
+  Object.entries(UNITS).forEach(([unit, info]) => {
+    const words = VOCAB.filter(v => v.unit === parseInt(unit));
+    const learned = words.filter(v => (state.mastery[vocabIndex(v)] || 0) >= 2).length;
+
+    const section = document.createElement('div');
+    section.className = 'unit-section';
+    section.style.animationDelay = (unit * 0.1) + 's';
+
+    section.innerHTML = `
+      <div class="unit-header" onclick="toggleUnit(this)">
+        <div class="unit-icon" style="background:${info.color}">${info.icon}</div>
+        <div class="unit-info">
+          <div class="unit-title">Unit ${unit}: ${info.name}</div>
+          <div class="unit-count">${learned} / ${words.length} mastered</div>
+        </div>
+        <div class="unit-arrow">▾</div>
+      </div>
+      <div class="unit-words">
+        ${words.map(v => {
+          const idx = vocabIndex(v);
+          const m = state.mastery[idx] || 0;
+          return `<div class="word-row" style="border-left-color:${['#e0d5ea','#ffe066','#ffb347','#5de6c8'][m]}">
+            <div class="word-text">
+              <div class="word-en">${v.en}</div>
+              <div class="word-zh">${v.zh}</div>
+              <div class="word-sent">${v.sent_en}</div>
+            </div>
+            <button class="word-audio-btn" onclick="event.stopPropagation(); playAudio('word_${idx}_en')" title="Listen in English">🔊</button>
+            <button class="word-audio-btn" onclick="event.stopPropagation(); playAudio('wordsent_${idx}_en')" title="Listen to sentence">💬</button>
+            <span class="mastery-dot mastery-${m}"></span>
+          </div>`;
+        }).join('')}
+      </div>`;
+
+    container.appendChild(section);
+  });
+}
+
+function toggleUnit(header) {
+  header.classList.toggle('open');
+  const words = header.nextElementSibling;
+  words.classList.toggle('open');
+}
+
+// ===================== CELEBRATION =====================
+function showCelebration(emoji, title, msg) {
+  const e = ENCOURAGEMENTS[Math.floor(Math.random() * ENCOURAGEMENTS.length)];
+  document.getElementById('celEmoji').textContent = emoji || e.emoji;
+  document.getElementById('celTitle').textContent = title || e.title;
+  document.getElementById('celMsg').textContent = msg || e.msg;
+  document.getElementById('celebration').classList.add('show');
+}
+
+function closeCelebration() {
+  document.getElementById('celebration').classList.remove('show');
+}
+
+// ===================== INIT =====================
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+});
+
+createSparkles();
+updateStats();
+initFlashcard();
+</script>
+</body>
+</html>
