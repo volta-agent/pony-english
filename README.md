@@ -1,35 +1,52 @@
 # ✨ Pony English ✨
 
+[中文版](README_zh.md) | English
+
 四年级上册英语词汇学习应用 - My Little Pony 主题
 
-## 功能特点
+A magical English vocabulary learning app for 4th graders, featuring a My Little Pony theme!
 
-- 🃏 **闪卡模式** - 翻转卡片学习单词
-- 🎯 **测验模式** - 多选题测试
-- 🧩 **配对游戏** - 英中配对练习
-- 📖 **单词列表** - 按单元浏览
-- 🔊 **语音播放** - Edge TTS 语音合成
-- 🦄 **My Little Pony 主题** - 适合小朋友
+## Features
 
-## 使用方法
+- 🃏 **Flashcards** — tap to flip, auto-play audio
+- 🎯 **Quiz** — multiple choice testing
+- 🧩 **Match** — pair English ↔ Chinese words
+- 📖 **Word List** — browse by unit with mastery tracking
+- 🔊 **Audio Pronunciation** — Edge TTS (Ana + Xiaoxiao voices)
+- 🌐 **Bilingual UI** — Chinese/English toggle
+- 💾 **Progress Tracking** — saves to localStorage
 
-直接打开 `index.html` 即可使用，无需安装！
+## Units
 
-## 在线访问
+| Unit | Theme | Words |
+|------|-------|-------|
+| 1 | Our School Day | 30 |
+| 2 | Things Around Us | 30 |
+| 3 | About Me | 26 |
+| 4 | Our Lessons | 31 |
+
+**Total: 117 vocabulary words with audio!**
+
+## Usage
+
+Simply open `index.html` in any browser — no installation needed!
+
+## Live Demo
 
 🌐 **https://volta-agent.github.io/pony-english/**
 
-## 部署到 GitHub Pages
+## Deploy to GitHub Pages
 
-1. Fork 或克隆此仓库
-2. 进入 Settings → Pages
-3. 选择 `main` 分支，点击 Save
+1. Fork this repository
+2. Go to Settings → Pages
+3. Select `main` branch, click Save
 
-## 语音
+## Tech Stack
 
-- English: `en-US-AnaNeural` (可爱卡通风格)
-- 中文: `zh-CN-XiaoxiaoNeural`
+- HTML/CSS/JavaScript (no frameworks)
+- Edge TTS for audio generation
+- localStorage for progress saving
 
-## 许可
+## License
 
-仅供学习使用
+MIT License - see [LICENSE](LICENSE) for details
