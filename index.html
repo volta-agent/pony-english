@@ -2331,9 +2331,7 @@ document.addEventListener('touchstart', (e) => {
 
 document.addEventListener('touchend', (e) => {
   if (currentTab !== 'flashcard') return;
-  // Don't flip if tapping on a button
   if (e.target.closest('button')) return;
-  // Don't flip if tapping outside the flashcard
   if (!e.target.closest('#flashcard')) return;
   const dx = e.changedTouches[0].screenX - touchStartX;
   const dy = e.changedTouches[0].screenY - touchStartY;
@@ -2344,6 +2342,7 @@ document.addEventListener('touchend', (e) => {
       markCard('hard');
     }
   } else if (Math.abs(dy) < 20 && Math.abs(dx) < 20) {
+    touchHandledFlip = true;
     flipCard();
   }
 }, { passive: true });
@@ -2544,8 +2543,15 @@ updateUITranslations();
 updateStats();
 renderStreakCalendar();
 
+// Track if touch handled the flip
+let touchHandledFlip = false;
+
 // Flashcard click - only flip if NOT clicking a button
 document.getElementById('flashcard').addEventListener('click', function(e) {
+  if (touchHandledFlip) {
+    touchHandledFlip = false;
+    return;
+  }
   if (!e.target.closest('button')) {
     flipCard();
   }
